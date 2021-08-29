@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="NSINHA Accounts">
+        <template if:true={Accounts}>
+            <lightning-layout multiple-rows>
+                <template for:each={Accounts} for:item="Account"> 
+                    <lightning-layout-item size="4" padding="around-small" key={Account.Name} class="custom-box slds-box">
+                        <p class=""><strong>Name</strong>: {Account.Name}</p>
+                        <p class=""><strong>Account Number</strong>: {Account.AccountNumber}</p>
+                        <p class=""><strong>Phone</strong>: {Account.Phone}</p>
+                        <p class=""><strong>Annual Revenue</strong>: {Account.AnnualRevenue}</p>
+                        <p class=""><strong>Rating</strong>: {Account.Rating}</p> 
+                        <div class="slds-var-m-top_medium">
+                            <lightning-button variant="brand" data-id={Account.Id} onclick={getContactHandler} label="Get Contacts" title="Get Contacts"></lightning-button>
+                        </div>                        
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+        </template>
+        <template if:true={clicked}>
+            <c-contact-modal contact-details={contactDetails} onclose={hideModal}></c-contact-modal>
+        </template>
+    </lightning-card>
+</template>
